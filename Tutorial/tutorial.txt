@@ -1,0 +1,23 @@
+criar um pj angular -> ng new AngularService
+instalar dependencias do pj -> npm install
+testar aplicação -> npm start
+contruir a interface a partir do app.component (html e css)
+importação do HttpClientModule no módulo-> import { HttpClientModule } from '@angular/common/http';
+incluir na claúsula array Imports -> 
+criar uma classe serviço -> ng generate service servidor
+na classe serviço incluir o import -> import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+na classe serviço definir o caminho da api -> url = 'http://localhost:8080/visitante-api;
+no construtor da classe serviço fazer a injeção de dependencia do http -> constructor(private http: HttpClient) { }
+configurar o proxy, criar arquivo proxy
+no arquivo proxy, incluir a linha -> context: '/api', 
+no arquivo proxy, incluir a linha -> target: 'http://localhost:8080/',
+no arquivo proxy, incluir a linha -> pathRewrite: { "^/api" : "" }
+para acionar o proxy, no arquivo package.json incluir a linha -> "start": "ng serve --proxy-config proxy.config.js",
+
+
+
+
+
+
+Criação do proxy resolve o problema abaixo
+Requisição cross-origin bloqueada: A diretiva Same Origin (mesma origem) não permite a leitura do recurso remoto em http://localhost:8080/visitante-api/testarHelloSpringBoot (motivo: falta cabeçalho 'Access-Control-Allow-Origin' no CORS). Código de status: 404.
