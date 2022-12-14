@@ -12,42 +12,53 @@ export class AppComponent {
   title = 'AngularService';
   valor: String | undefined;
   visitante?: Visitante;
+  ind: number = 0;
+  lst: Visitante[]=[];
 
   constructor(private srv: ServidorService) { }
-
-
-  visualizarTXT(){
-
-      this.srv.obter().subscribe({
-        next: (res)=> {
-          this.valor = res;
-          console.log(this.valor);             
-        },
-        error: (e)=> {
-          console.error(e);
-        }
-      });
-  }
 
   clicaNum(){
     let valore: Number;
     this.srv.getTesteNumero().subscribe(vlr => {
       valore = vlr;
-      console.log(valore);   
-    }); 
+      console.log(valore);
+    });
   }
 
-
-  servicoSimples(){
-
-    this.srv.testeVisitanteSimples().subscribe({
+  consultaSimples(): void{
+    this.srv.consultaSimples().subscribe({
       next: (res)=> {
         this.visitante = res;
-        console.table(this.visitante);             
+        console.table(this.visitante);
       },
       error: (e)=> {
         console.error(e);
       }
     });
 }
+
+consultaParametrizada(id:number):void {
+  this.srv.consultaParametrizada(id).subscribe({
+    next: (res)=> {
+      this.visitante = res;
+      console.table(this.visitante);
+    },
+    error: (e)=> {
+      console.error(e);
+    }
+  });
+}
+
+listar(): void{
+  this.srv.listar().subscribe({
+    next: (res)=> {
+      this.lst = res;
+      console.table(this.lst);
+    },
+    error: (e)=> {
+      console.error(e);
+    }
+  });
+}
+
 }
